@@ -1,0 +1,62 @@
+body {
+  background-color: var(--dark-blue);
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  height: 56px;
+  margin-top: 32px;
+  display: flex;
+  background: var(--dark-blue);
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header .busca {
+  height: 100%;
+  padding: 10px;
+  display: none;
+}
+
+.header .usuario {
+  display: none;
+  color: var(--white);
+  align-items: center;
+}
+
+.header .usuario img{
+  border-radius: 50%;
+  height: 32px;
+}
+
+.header .usuario aside{
+  margin-left: 5px;
+}
+
+.header .lupa {
+  margin-right: 0;
+}
+
+@media (min-width: 576px) and (max-width: 799px){
+  .header .lupa {
+    display: none;
+  }
+
+  .header .busca {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 800px){
+  .header .lupa, .header .hamburguer {
+    display: none;
+  }
+
+  .header .busca {
+    display: inline-block;
+  }
+
+  .header .usuario {
+    display: flex;
+  }
+}
