@@ -1,0 +1,39 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 48px;
+}
+
+.content .nav {
+  display: none;
+  color: var(--white);
+}
+
+.content .nav ul, .content .nav li {
+  margin-top: 20px;
+}
+
+.content .nav li {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.content .nav img {
+  width: 20;
+  height: 16;
+}
+
+.content .nav span {
+  margin-left: 15px;
+}
+
+@media (min-width: 576px) and (max-width: 799px){
+}
+
+@media (min-width: 800px){
+  .content .nav {
+    display: block;
+  }
+}

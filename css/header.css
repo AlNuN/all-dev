@@ -6,8 +6,8 @@ body {
 .header {
   height: 56px;
   margin-top: 32px;
-  display: flex;
   background: var(--dark-blue);
+  display: flex;
   align-items: center;
   justify-content: space-around;
 }
