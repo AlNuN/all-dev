@@ -1,0 +1,61 @@
+.menu-direito {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-direito h2 {
+  color: var(--white);
+}
+
+.menu-direito h2:nth-child(4) {
+  margin-top: 40px;
+}
+
+.menu-direito input{
+  margin-top: 16px;
+} 
+
+.menu-direito textarea {
+  margin-top: 16px;
+  padding: 10px 0 0 10px;
+  height: 70px;
+}
+
+.menu-direito select{
+  appearance: none; 
+  -webkit-appearance: none;
+  width: 100%;
+} 
+
+.select-wrapper {
+  position: relative;
+  margin-top: 16px;
+}
+
+.select-wrapper::after {
+  content: url(../img/seta-baixo.svg);
+  font-size: 1rem;
+  color: var(--white);
+  top: 18px;
+  right: 15px;
+  width: 9px;
+  height: 4.5px;
+  position: absolute;
+}
+
+#color-picker {
+  border: var(--white) 1px solid;
+  background: transparent;
+  width: 100%;
+  padding: 8px;
+}
+
+#color-picker::-webkit-color-swatch, #color-picker::-moz-color-swatch {
+  border-radius: 5px;
+} 
+
+.menu-direito button {
+  margin-top: 40px;
+  background-color: var(--blue-300);
+  color: var(--dark-blue);
+}

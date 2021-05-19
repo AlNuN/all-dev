@@ -1,5 +1,6 @@
 :root {
   --white: #fff;
+  --black: black;
   --dark-blue: #051D3B;
   --inside-input: #2d415a;
   --placeholder: #a2acb7;
@@ -13,6 +14,8 @@
   border: none;
   background: var(--inside-input);
   border-radius: 5px;
+  padding-left: 10px;
+  height: 56px;
   color: var(--placeholder);
 }
 

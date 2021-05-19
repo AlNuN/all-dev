@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/content.css">
+  <link rel="stylesheet" href="css/menu-direito.css">
+  <link rel="stylesheet" href="css/editor-codigo.css">
 </head>
 <body>
   <header class="header">
@@ -31,6 +33,7 @@
       <aside>Harry</aside>
     </div>
   </header>
+
   <section class="content">
     <nav class="nav">
       <h2 class="sidebar-title-font">
@@ -46,11 +49,36 @@
         </li>
       </ul>
     </nav>
-    <main>
-    </main>
-    <aside>
+
+  <main class="editor-codigo">
+    <section class="borda-editor">
+      <textarea name="codigo" id="codigo"></textarea>
+    </section>
+  </main>
+
+    <aside class="menu-direito">
+      <h2 class="sidebar-title-font">
+        Seu projeto
+      </h2>
+      <input class="input" type="text" name="nome" id="nome-projeto" placeholder="Nome do seu projeto">
+      <textarea class="input" name="descricao" id="descriacao-projeto" placeholder="Descrição do seu projeto"></textarea>
+
+      <h2 class="sidebar-title-font">
+        Personalização
+      </h2>
+      <div class="select-wrapper">
+        <select class="input" name="linguagem" id="linguagem">
+          <option value="js">JavaScript</option>
+          <option value="html">Html</option>
+          <option value="css">Css</option>
+        </select>
+      </div>
+
+      <input class="input" type="color" name="color-picker" id="color-picker">
+
+      <button class="input">Salvar projeto</button>
     </aside>
   </section>
-  <main></main>
+
 </body>
 </html>
