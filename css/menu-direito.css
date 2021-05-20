@@ -1,6 +1,9 @@
 .menu-direito {
   display: flex;
   flex-direction: column;
+  grid-area: md;
+  margin: 40px 0 40px 0;
+  min-width: 190px;
 }
 
 .menu-direito h2 {
@@ -58,4 +61,30 @@
   margin-top: 40px;
   background-color: var(--blue-300);
   color: var(--dark-blue);
+}
+
+#descricao-projeto {
+  letter-spacing: 0.001em;
+}
+
+@media (min-width: 576px) and (max-width: 921.9px){
+  .personalizacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  #color-picker {
+    width: 49%
+  }
+
+  .select-wrapper {
+    width: 49%
+  }
+}
+
+@media (min-width: 922px){
+  .menu-direito {
+    margin: 0 0 0 0;
+  }
 }

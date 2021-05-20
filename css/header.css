@@ -5,21 +5,30 @@ body {
 
 .header {
   height: 56px;
-  margin-top: 32px;
+  margin: 32px 16px 0 16px;
   background: var(--dark-blue);
-  display: flex;
+  display: grid;
+  grid-template-areas: 'lg . . lupa hamburguer' ;
   align-items: center;
-  justify-content: space-around;
+}
+
+.header .logo {
+  grid-area: lg;
 }
 
 .header .busca {
   display: none;
+  grid-area: bs;
 }
 
 .header .usuario {
   display: none;
   color: var(--white);
   align-items: center;
+  grid-area: usr;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 32px;
 }
 
 .header .usuario img{
@@ -33,9 +42,18 @@ body {
 
 .header .lupa {
   margin-right: 0;
+  grid-area: lupa;
 }
 
-@media (min-width: 576px) and (max-width: 799px){
+.header .hamburguer {
+  grid-area: hamburguer;
+}
+
+@media (min-width: 576px) and (max-width: 921.9px){
+  .header {
+    grid-template-areas: 'lg bs bs hamburguer' ;
+  }
+
   .header .lupa {
     display: none;
   }
@@ -45,7 +63,13 @@ body {
   }
 }
 
-@media (min-width: 800px){
+@media (min-width: 922px){
+  .header {
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-areas: 'lg lg lg . bs bs bs bs bs bs bs . usr usr usr' ;
+    margin: 32px 32px 0 32px;
+  }
+
   .header .lupa, .header .hamburguer {
     display: none;
   }

@@ -9,15 +9,16 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/content.css">
+  <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/menu-direito.css">
   <link rel="stylesheet" href="css/editor-codigo.css">
+  <link rel="stylesheet" href="css/content.css">
+
+  <script src="js/rezizableTextArea.js"></script>
 </head>
-<body>
+<body onload="init();">
   <header class="header">
-    <div class="logo">
-      <img src="img/logo-plataforma.svg" alt="logo da plataforma escrito Alura Dev estilizado">
-    </div>
+    <img class="logo" src="img/logo-plataforma.svg" alt="logo da plataforma escrito Alura Dev estilizado">
 
     <input class="busca input" type="search" name="busca" id="busca" placeholder="Busque por algo">
 
@@ -50,11 +51,11 @@
       </ul>
     </nav>
 
-  <main class="editor-codigo">
+  <main class="editor-codigo" >
     <section class="borda-externa">
       <div class="borda-interna">
         <img src="img/mac-buttons.svg" alt="Botões decorativos no estilo mac">
-        <textarea name="codigo" id="codigo">
+        <textarea name="codigo" id="codigo" contenteditable="true">
           const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
           const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
@@ -77,20 +78,22 @@
         Seu projeto
       </h2>
       <input class="input" type="text" name="nome" id="nome-projeto" placeholder="Nome do seu projeto">
-      <textarea class="input" name="descricao" id="descriacao-projeto" placeholder="Descrição do seu projeto"></textarea>
+      <textarea class="input" name="descricao" id="descricao-projeto" placeholder="Descrição do seu projeto"></textarea>
 
       <h2 class="sidebar-title-font">
         Personalização
       </h2>
-      <div class="select-wrapper">
-        <select class="input" name="linguagem" id="linguagem">
-          <option value="js">JavaScript</option>
-          <option value="html">Html</option>
-          <option value="css">Css</option>
-        </select>
-      </div>
+      <div class="personalizacao">
+        <div class="select-wrapper">
+          <select class="input" name="linguagem" id="linguagem">
+            <option value="js">JavaScript</option>
+            <option value="html">Html</option>
+            <option value="css">Css</option>
+          </select>
+        </div>
 
-      <input class="input" type="color" name="color-picker" id="color-picker" value="#6bd1ff">
+        <input class="input" type="color" name="color-picker" id="color-picker" value="#6bd1ff">
+      </div>
 
       <button class="input">Salvar projeto</button>
     </aside>
