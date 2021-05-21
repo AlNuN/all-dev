@@ -3,27 +3,127 @@
   --black: black;
   --dark-blue: #051D3B;
   --inside-input: #2d415a;
+  --inside-input-hover: #41536a;
+  --btn-outlined-hover: #112d5a;
   --placeholder: #a2acb7;
   --blue-100: #96B9FD;
   --blue-200: #7BA4FC;
   --blue-300: #5081FB;
-  --unhovered: #0b254a;
+  --outlined: #0b254a;
   --desktop-main-width: 752px;
 }
 
-.input {
+.input, .btn {
   border: none;
-  background: var(--inside-input);
-  border-radius: 5px;
+  border-radius: 8px;
   padding-left: 10px;
   height: 56px;
+  width: 100%;
+}
+
+.input {
+  background: var(--inside-input);
   color: var(--placeholder);
 }
 
-.svg-button {
+.input:hover {
+  background: var(--inside-input-hover);
+}
+
+.btn-filled {
+  background: var(--blue-300);
+  color: var(--dark-blue);
+}
+
+.btn-filled:hover, .btn-filled:active {
+  background: var(--blue-200) !important;
+}
+
+.btn-filled:active {
+  border: 4px solid var(--blue-300);
+}
+
+.btn-filled:focus {
+  background: var(--blue-100);
+}
+
+.btn-outlined {
+  background: var(--outlined);
+  color: var(--white);
+}
+
+.btn-outlined:hover, .btn-outlined:active {
+  background: var(--btn-outlined-hover) !important;
+}
+
+.btn-outlined:active {
+  border: 4px solid #173569;
+}
+
+.btn-outlined:focus {
+  background: #173569;
+}
+
+.usuario-btn:hover {
+  background-color: #192f4b;
+}
+
+.usuario-btn {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.usuario-btn img{
+  border-radius: 50%;
+  height: 32px;
+}
+
+.usuario-btn aside{
+  margin-left: 5px;
+}
+
+.svg-button, .usuario-btn {
   background-color: transparent;
   border: none;
 }
+
+.svg-button:hover {
+  background-color: var(--outlined);
+}
+
+.svg-button:active {
+  background-color: var(--btn-outlined-hover);
+}
+
+.menu-item svg{
+  width: 48px;
+  height: 48px;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  color: #919ca9;
+  text-decoration: none;
+}
+
+.menu-item path { fill: #919ca9; }
+
+.menu-item rect { fill: var(--btn-outlined-hover); }
+
+.menu-item:hover a { color: #d7dff0; }
+
+.menu-item:hover path { fill: #d7d7d7; }
+
+.menu-item:hover rect { fill: #355DB6; }
+
+.menu-item:active a { color: var(--white); }
+
+.menu-item:active path { fill: var(--white); }
+
+.menu-item:active rect { fill: var(--blue-300); }
 
 .title-font {
   font-size: 21px;
@@ -37,7 +137,7 @@
   text-transform: uppercase;
 }
 
-.body-font, .input{
+.body-font, .input, .btn{
   font-size: 16px;
   line-height: 24px;
 }

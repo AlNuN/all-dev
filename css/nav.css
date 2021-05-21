@@ -8,17 +8,6 @@
   margin-top: 20px;
 }
 
-.content .nav li {
-  height: 48px;
-  display: flex;
-  align-items: center;
-}
-
-.content .nav img {
-  width: 20;
-  height: 16;
-}
-
 .content .nav span {
   margin-left: 15px;
 }

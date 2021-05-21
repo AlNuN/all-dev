@@ -23,21 +23,8 @@ body {
 
 .header .usuario {
   display: none;
-  color: var(--white);
-  align-items: center;
   grid-area: usr;
   justify-content: flex-end;
-  align-items: center;
-  margin-right: 32px;
-}
-
-.header .usuario img{
-  border-radius: 50%;
-  height: 32px;
-}
-
-.header .usuario aside{
-  margin-left: 5px;
 }
 
 .header .lupa {

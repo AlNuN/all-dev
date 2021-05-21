@@ -40,7 +40,4 @@
 
 .highlight-button {
   margin-top: 32px;
-  background-color: var(--unhovered);
-  width: 100%;
-  color: var(--white);
 }
