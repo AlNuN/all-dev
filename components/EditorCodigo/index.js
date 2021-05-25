@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components"
 import MacButtons from '../SVG/MacButtons'
 
@@ -29,31 +30,36 @@ const Inner = styled.div`
 `
 
 const Outer = styled.section`
-  background-color: #6bd1ff;
+  background-color: ${(props) => props.color};;
   border-radius: 10px;
   padding: 32px;
 `
 
-export default function EditorCodigo() {
+export default function EditorCodigo({bgColor}) {
+  const [code, handleCode] = useState(`
+    const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
+
+    const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
+
+    const unfold = (f, seed) => {
+      const go = (f, seed, acc) => {
+        const res = f(seed)
+        return res ? go(f, res[1], acc.concat([res[0]])) : acc
+      }
+      return go(f, seed, [])
+    }
+  `)
+  const changeCode = (e) => {
+    handleCode(e.target.value);
+  }
+
   return (
-      <Outer>
+      <Outer color={bgColor}>
         <Inner>
           <MacButtons />
-          <Code name="codigo" contenteditable="true" rows="16">
-            {`
-            const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
-
-            const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
-
-            const unfold = (f, seed) => {
-              const go = (f, seed, acc) => {
-                const res = f(seed)
-                return res ? go(f, res[1], acc.concat([res[0]])) : acc
-              }
-              return go(f, seed, [])
-            }
-          `}
-          </Code>
+          <Code name="codigo" contenteditable="true" rows="16"
+            onChange={changeCode}
+            value={code} />
         </Inner>
       </Outer>
   )

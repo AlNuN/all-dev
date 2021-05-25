@@ -86,7 +86,7 @@ const Md = styled.aside`
   }
 `
 
-export default function MenuDireito () {
+export default function MenuDireito ({bgColor, changeColor}) {
   return (
     <Md>
       <H2>
@@ -98,8 +98,8 @@ export default function MenuDireito () {
       <H2>
         Personalização
       </H2>
-      <div class="personalizacao">
-        <div class="select-wrapper">
+      <div className="personalizacao">
+        <div className="select-wrapper">
           <Input as="select" name="linguagem" id="linguagem">
             <option value="js">JavaScript</option>
             <option value="html">Html</option>
@@ -107,7 +107,8 @@ export default function MenuDireito () {
           </Input>
         </div>
 
-        <Input type="color" name="color-picker" id="color-picker" value="#6bd1ff"/>
+        <Input type="color" name="color-picker" id="color-picker"
+          value={bgColor} onChange={changeColor}/>
       </div>
 
       <ButtonFill>Salvar projeto</ButtonFill>
