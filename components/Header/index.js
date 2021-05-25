@@ -3,7 +3,6 @@ import Logo from '../SVG/Logo'
 import Lupa from '../SVG/Lupa'
 import Hamburger from '../SVG/Hamburguer'
 import SVGButton from '../SVGButton'
-import Button from '../Button'
 import Input from '../Input'
 import Usuario from '../Usuario'
 
@@ -41,7 +40,7 @@ const SVGHamburguer = styled(SVGButton)`
   }
 `
 
-const Busca = styled(Button)`
+const Busca = styled(Input)`
   display: none;
   grid-area: bs;
   @media (min-width: 576px) and (max-width: 921.9px){
@@ -56,7 +55,7 @@ export default function Header (props) {
   return (
     <SHeader>
       <Logo />
-      <Busca as={Input} placeholder="Busque por algo" />
+      <Busca placeholder="Busque por algo"/>
       <SVGLupa><Lupa /></SVGLupa>
       <SVGHamburguer><Hamburger /></SVGHamburguer>
       <Usuario/>
