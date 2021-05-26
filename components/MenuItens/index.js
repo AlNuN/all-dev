@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Li = styled.li`
   margin-top: 20px;
@@ -22,7 +24,6 @@ const Li = styled.li`
   path { fill: #919ca9; }
 
   rect { fill: ${({ theme }) => theme.colors.btnOutlinedHover}; }
-    
 
   &:hover a { color: #d7dff0; }
 
@@ -30,17 +31,19 @@ const Li = styled.li`
 
   &:hover rect { fill: #355DB6; }
 
-  &:active a { color: ${({ theme }) => theme.colors.white}; }
+  &:active a, &.active a { color: ${({ theme }) => theme.colors.white}; }
 
-  &:active path { fill: ${({ theme }) => theme.colors.white}; }
+  &:active path, &.active path { fill: ${({ theme }) => theme.colors.white}; }
 
-  &:active rect { fill: ${({ theme }) => theme.colors.blue300}; }
+  &:active rect, &.active rect { fill: ${({ theme }) => theme.colors.blue300}; }
 `
 
 export default function MenuItens (props) {
+  const router = useRouter()
+
   const content = [
     {
-      a: '#',
+      a: '/',
       svg:() => (
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="48" height="48" rx="16" />
@@ -50,7 +53,7 @@ export default function MenuItens (props) {
       span: 'Editor de código',
     },
     {
-      a: '#',
+      a: '/comunidade',
       svg:() => (
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="48" height="48" rx="16" />
@@ -64,11 +67,13 @@ export default function MenuItens (props) {
   return (
     <ul>
       {content.map((c) => 
-        <Li key={c.span}>
-          <a href={c.a}>
-            {c.svg()}
-            <span>{c.span}</span>
-          </a>
+        <Li key={c.span} className={router.pathname == c.a ? 'active' : ''}>
+          <Link href={c.a}>
+            <a>
+              {c.svg()}
+              <span>{c.span}</span>
+            </a>
+          </Link>
         </Li>
       )}
     </ul>

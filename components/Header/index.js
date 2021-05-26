@@ -5,6 +5,7 @@ import Hamburger from '../SVG/Hamburguer'
 import SVGButton from '../SVGButton'
 import Input from '../Input'
 import Usuario from '../Usuario'
+import Link from 'next/link'
 
 
 const SHeader = styled.header`
@@ -51,10 +52,21 @@ const Busca = styled(Input)`
   }
 `
 
+const Wrapper = styled.div`
+  grid-area: lg;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+`
+
 export default function Header (props) {
   return (
     <SHeader>
-      <Logo />
+      <Wrapper>
+        <Link href="/">
+          <a><Logo /></a>
+        </Link>
+      </Wrapper>
       <Busca placeholder="Busque por algo"/>
       <SVGLupa><Lupa /></SVGLupa>
       <SVGHamburguer><Hamburger /></SVGHamburguer>
