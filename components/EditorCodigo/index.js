@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import MacButtons from '../SVG/MacButtons'
+import hljs from 'highlight.js'
 
-const Code = styled.textarea`
+const CodeArea = styled.textarea`
   outline: none;
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
@@ -13,6 +14,12 @@ const Code = styled.textarea`
   resize: none;
   margin: auto;
   font-size: 14px;
+
+  &:-webkit-scrollbar {
+  display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 `
 const Inner = styled.div`
   border-radius: 10px;
@@ -35,7 +42,23 @@ const Outer = styled.section`
   padding: 32px;
 `
 
-export default function EditorCodigo({bgColor}) {
+const Code = styled.code`
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const Pre = styled.pre`
+  white-space: pre-wrap;
+  padding: 10px;
+  margin: auto;
+
+  &:-webkit-scrollbar {
+  display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+`;
+
+export default function EditorCodigo({bgColor, hasHighlight, lang}) {
   const [code, handleCode] = useState(`
     const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -49,17 +72,26 @@ export default function EditorCodigo({bgColor}) {
       return go(f, seed, [])
     }
   `)
+  const [highlightedCode, handleHighlighted] = useState(``);
   const changeCode = (e) => {
     handleCode(e.target.value);
   }
+
+  useEffect(() => {
+    hasHighlight 
+      && handleHighlighted(hljs.highlight(code, {language: lang}).value)
+  }, [hasHighlight])
 
   return (
       <Outer color={bgColor}>
         <Inner>
           <MacButtons />
-          <Code name="codigo" contenteditable="true" rows="16"
+          {hasHighlight 
+            ? <Pre><Code dangerouslySetInnerHTML={ { __html: highlightedCode } }></Code></Pre>
+            : <CodeArea name="codigo" contenteditable="true" rows="16"
             onChange={changeCode}
             value={code} />
+          }
         </Inner>
       </Outer>
   )

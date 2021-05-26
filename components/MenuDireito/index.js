@@ -86,22 +86,29 @@ const Md = styled.aside`
   }
 `
 
-export default function MenuDireito ({bgColor, changeColor}) {
+export default function MenuDireito ({
+  bgColor,
+  changeColor,
+  lang,
+  changeLang,
+}) {
   return (
     <Md>
       <H2>
         Seu projeto
       </H2>
       <Input type="text" name="nome" placeholder="Nome do seu projeto" />
-      <Input as="textarea" name="descricao" placeholder="Descrição do seu projeto"></Input>
+      <Input as="textarea" name="descricao" 
+        placeholder="Descrição do seu projeto"></Input>
 
       <H2>
         Personalização
       </H2>
       <div className="personalizacao">
         <div className="select-wrapper">
-          <Input as="select" name="linguagem" id="linguagem">
-            <option value="js">JavaScript</option>
+          <Input as="select" name="linguagem" id="linguagem" 
+            value={lang} onChange={changeLang}>
+            <option value="javascript">JavaScript</option>
             <option value="html">Html</option>
             <option value="css">Css</option>
           </Input>

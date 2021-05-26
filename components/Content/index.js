@@ -25,8 +25,13 @@ const Main = styled.main`
 
 export default function Content() {
   const [bgColor, handleBgColor] = useState('#6bd1ff')
+  const [high, handleHigh] = useState(false)
+  const [lang, handleLang] = useState('javascript')
   const changeColor = (e) => {
     handleBgColor(e.target.value)
+  }
+  const changeLang = (e) => {
+    handleLang(e.target.value)
   }
   return (
     <Cont>
@@ -34,10 +39,16 @@ export default function Content() {
       <Main>
         <EditorCodigo 
           bgColor={bgColor}
+          hasHighlight={high}
+          lang={lang}
         />
-        <ButtonOut>Visualizar com o highlight</ButtonOut>
+        <ButtonOut onMouseUp={() => handleHigh(!high)}>
+          Visualizar com o highlight
+        </ButtonOut>
       </Main>
       <MenuDireito 
+        lang={lang}
+        changeLang={changeLang}
         bgColor={bgColor}
         changeColor={changeColor}
       />
