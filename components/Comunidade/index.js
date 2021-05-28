@@ -29,7 +29,6 @@ export default function Comunidade() {
 
     db.open().then(function(){
       db.table('projetos').toArray().then((projeto) => { setCodes(projeto) })
-      console.log(db.verno)
     })
 
   }, [])
@@ -40,7 +39,7 @@ export default function Comunidade() {
       <Main>
         <ul>
           {codes !== null && codes.map((code) => (
-            <li>
+            <li key={code.id}>
               <EditorCodigo 
                 code={code.codigo}
                 bgColor={code.cor}

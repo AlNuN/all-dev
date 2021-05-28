@@ -4,7 +4,7 @@ import 'dexie-syncable'
 
 const db = new Dexie('MyDB')
 db.version(1).stores({
-  projetos: 'nome, linguagem, cor'
+  projetos: '++id, nome, linguagem, cor'
 })
 
 export { db };
