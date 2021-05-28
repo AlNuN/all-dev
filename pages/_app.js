@@ -1,6 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
-import gradientDark from 'highlight.js/styles/gradient-dark.css'
+import 'highlight.js/styles/gradient-dark.css'
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -76,7 +76,8 @@ export default function App({ Component, pageProps }) {
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" /> 
-        <link rel="stylesheet" href={gradientDark} />
+        <link rel="icon" href="/logo-plataforma.svg" ></link>
+        <title>AllDev</title>
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
