@@ -1,5 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import Head from 'next/head';
+import Head from 'next/head'
 import gradientDark from 'highlight.js/styles/gradient-dark.css'
 
 const GlobalStyle = createGlobalStyle`

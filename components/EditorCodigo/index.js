@@ -58,24 +58,14 @@ const Pre = styled.pre`
   scrollbar-width: none;  /* Firefox */
 `;
 
-export default function EditorCodigo({bgColor, hasHighlight, lang}) {
-  const [code, handleCode] = useState(`
-    const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
-
-    const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
-
-    const unfold = (f, seed) => {
-      const go = (f, seed, acc) => {
-        const res = f(seed)
-        return res ? go(f, res[1], acc.concat([res[0]])) : acc
-      }
-      return go(f, seed, [])
-    }
-  `)
+export default function EditorCodigo({
+  bgColor, 
+  hasHighlight,
+  lang,
+  code,
+  changeCode,
+}) {
   const [highlightedCode, handleHighlighted] = useState(``);
-  const changeCode = (e) => {
-    handleCode(e.target.value);
-  }
 
   useEffect(() => {
     hasHighlight 

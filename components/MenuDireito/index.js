@@ -91,15 +91,23 @@ export default function MenuDireito ({
   changeColor,
   lang,
   changeLang,
+  submit,
+  nome,
+  changeNome,
+  descricao,
+  changeDescricao
 }) {
   return (
     <Md>
       <H2>
         Seu projeto
       </H2>
-      <Input type="text" name="nome" placeholder="Nome do seu projeto" />
+      <Input type="text" name="nome" placeholder="Nome do seu projeto" 
+        value={nome} onChange={changeNome} />
       <Input as="textarea" name="descricao" 
-        placeholder="Descrição do seu projeto"></Input>
+        placeholder="Descrição do seu projeto"
+        value={descricao} onChange={changeDescricao}
+      />
 
       <H2>
         Personalização
@@ -118,7 +126,7 @@ export default function MenuDireito ({
           value={bgColor} onChange={changeColor}/>
       </div>
 
-      <ButtonFill>Salvar projeto</ButtonFill>
+      <ButtonFill onMouseUp={() => submit()}>Salvar projeto</ButtonFill>
     </Md>
   )
 }
