@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import EditorCodigo from "../EditorCodigo"
 import Nav from '../Nav'
@@ -22,24 +22,34 @@ const Main = styled.main`
 `
 
 export default function Comunidade() {
-  const [bgColor, handleBgColor] = useState('#6bd1ff')
-  const [high, handleHigh] = useState(false)
-  const [lang, handleLang] = useState('javascript')
-  const changeColor = (e) => {
-    handleBgColor(e.target.value)
-  }
-  const changeLang = (e) => {
-    handleLang(e.target.value)
-  }
+  const [codes, setCodes] = useState(null)
+  
+  useEffect(async () => {
+    const db = (await import('../../controlers/DB.js')).db
+
+    db.open().then(function(){
+      db.table('projetos').toArray().then((projeto) => { setCodes(projeto) })
+      console.log(db.verno)
+    })
+
+  }, [])
+
   return (
     <Cont>
       <Nav />
       <Main>
-        <EditorCodigo 
-          bgColor={bgColor}
-          hasHighlight={high}
-          lang={lang}
-        />
+        <ul>
+          {codes !== null && codes.map((code) => (
+            <li>
+              <EditorCodigo 
+                code={code.codigo}
+                bgColor={code.cor}
+                hasHighlight={true}
+                lang={code.linguagem}
+              />
+            </li>
+          ))}
+        </ul>
       </Main>
     </Cont>
   )
