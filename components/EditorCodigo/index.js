@@ -50,6 +50,8 @@ const Pre = styled.pre`
   white-space: pre-wrap;
   padding: 10px;
   margin: auto;
+  height: 300px;
+  overflow: scroll;
 
   &:-webkit-scrollbar {
   display: none;
