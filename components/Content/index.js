@@ -5,8 +5,8 @@ import EditorCodigo from "../EditorCodigo"
 import MenuDireito from "../MenuDireito"
 import Nav from '../Nav'
 import router from 'next/router'
-import html2canvas from 'html2canvas'
-
+import domtoimage from 'dom-to-image'
+import { saveAs } from 'file-saver'
 
 const Cont = styled.section`
   display: grid;
@@ -76,12 +76,10 @@ export default function Content(props) {
   }
 
   const exportAs = (e) => {
-    window.scrollTo(0,0)
-    html2canvas(ref.current, {scrollX: -8})
-    .then((canvas) => {
-      let img = canvas.toDataURL('image/png')
-      window.location.assign(img)
-    })
+    domtoimage.toPng(ref.current)
+      .then((dataUrl) => {
+        window.saveAs(dataUrl, 'image.png')
+      })
   }
 
   return (
