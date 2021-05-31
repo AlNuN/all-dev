@@ -14,7 +14,7 @@ import Close from '../SVG/Close'
 const SHeader = styled.header`
   height: 56px;
   display: grid;
-  grid-template-areas: 'lg . . lupa hamburguer' ;
+  grid-template-areas: ${(props) => props.srch ? '"bs bs bs lupa hamburguer"' : '"lg . . lupa hamburguer"'};
   align-items: center;
   float: none;
 
@@ -46,7 +46,7 @@ const SVGHamburguer = styled(SVGButton)`
 `
 
 const Busca = styled(Input)`
-  display: none;
+  display: ${(props) => props.srch ? 'inline-block' : 'none'};
   grid-area: bs;
   @media (min-width: 576px) and (max-width: 921.9px){
     display: inline-block;
@@ -59,8 +59,14 @@ const Busca = styled(Input)`
 const Wrapper = styled.div`
   grid-area: lg;
   width: 100%;
-  display: flex;
+  display: ${(props) => props.srch ? 'none' : 'flex'};
   align-items: flex-start;
+  @media (min-width: 576px) and (max-width: 921.9px){
+    display: flex;
+  }
+  @media (min-width: 922px){
+    display: flex;
+  }
 `
 
 const Dropdown = styled.div`
@@ -89,17 +95,27 @@ const Dropdown = styled.div`
 `
 
 export default function Header (props) {
-  const [hasDrop, handleDrop] = useState(false);
+  const [hasDrop, handleDrop] = useState(false)
+  const [hasSrch, handleSrch] = useState(false)
+
+  const changeSrch = (e) => {
+    handleSrch(!hasSrch)
+  } 
 
   return (
-    <SHeader>
-      <Wrapper>
+    <SHeader srch={hasSrch}>
+      <Wrapper srch={hasSrch}>
         <Link href="/">
           <a><Logo /></a>
         </Link>
       </Wrapper>
-      <Busca placeholder="Busque por algo"/>
-      <SVGLupa><Lupa /></SVGLupa>
+      <Busca srch={hasSrch} placeholder="Busque por algo"/>
+      <SVGLupa onClick={changeSrch}>
+        {hasSrch
+          ? <Close />
+          : <Lupa />
+        }
+      </SVGLupa>
       <SVGHamburguer onClick={()=> handleDrop(!hasDrop)}>
         {hasDrop
           ? <Close />
