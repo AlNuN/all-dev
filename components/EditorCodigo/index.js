@@ -66,6 +66,7 @@ export default function EditorCodigo({
   lang,
   code,
   changeCode,
+  refe,
 }) {
   const [highlightedCode, handleHighlighted] = useState(``);
 
@@ -75,7 +76,7 @@ export default function EditorCodigo({
   }, [hasHighlight])
 
   return (
-      <Outer color={bgColor}>
+      <Outer color={bgColor} ref={refe}>
         <Inner>
           <MacButtons />
           {hasHighlight 

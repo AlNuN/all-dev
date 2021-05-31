@@ -1,10 +1,11 @@
-import { useContext, useState } from "react"
-import styled, { ThemeContext } from "styled-components"
-import { ButtonOut } from "../Buttons"
+import React, { useRef, useState } from "react"
+import styled from "styled-components"
+import { ButtonOut, ButtonFill } from "../Buttons"
 import EditorCodigo from "../EditorCodigo"
 import MenuDireito from "../MenuDireito"
 import Nav from '../Nav'
 import router from 'next/router'
+import html2canvas from 'html2canvas'
 
 
 const Cont = styled.section`
@@ -24,6 +25,10 @@ const Main = styled.main`
     margin-top: 32px;
   }
 `
+
+// const EditorRef = React.forwardRef((props, ref) => (
+//   <EditorCodigo ref={ref} {...props} />
+// ))
 
 export default function Content(props) {
   const [code, handleCode] = useState(`
@@ -49,6 +54,7 @@ export default function Content(props) {
   const changeCode = (e) => { handleCode(e.target.value) }
   const changeNome = (e) => { handleNome(e.target.value) }
   const changeDescricao = (e) => { handleDescricao(e.target.value) }
+  const ref = useRef(null)
 
   let projeto = {
     nome,
@@ -69,20 +75,33 @@ export default function Content(props) {
     router.push('/comunidade')
   }
 
+  const exportAs = (e) => {
+    window.scrollTo(0,0)
+    html2canvas(ref.current, {scrollX: -8})
+    .then((canvas) => {
+      let img = canvas.toDataURL('image/png')
+      window.location.assign(img)
+    })
+  }
+
   return (
     <Cont>
       <Nav />
       <Main>
-        <EditorCodigo 
+        <EditorCodigo
           bgColor={bgColor}
           hasHighlight={high}
           lang={lang}
           code={code}
           changeCode={changeCode}
+          refe={ref}
         />
         <ButtonOut onMouseUp={() => handleHigh(!high)}>
           Visualizar com o highlight
         </ButtonOut>
+        {high
+          && <ButtonFill onClick={exportAs}>Exportar</ButtonFill>
+        }
       </Main>
       <MenuDireito 
         lang={lang}
