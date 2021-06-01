@@ -86,14 +86,9 @@ export default function Content(props) {
   }
 
   const exportAs = (e) => {
-    const LIBRARY_CONV = {
-      png: 'toPng',
-      svg: 'toSvg',
-      jpg: 'toJpeg'
-    }
-    domtoimage[LIBRARY_CONV[format]](ref.current)
+    domtoimage[format](ref.current)
       .then((dataUrl) => {
-        window.saveAs(dataUrl, 'code')
+        saveAs(dataUrl, 'code')
       })
   }
 
@@ -120,9 +115,9 @@ export default function Content(props) {
           <Export>
             <ButtonFill onClick={exportAs}>Exportar</ButtonFill>
             <Select value={format} changeValue={changeFormat}>
-              <option value="png">PNG</option>
-              <option value="svg">SVG</option>
-              <option value="jpg">JPG</option>
+              <option value="toPng">PNG</option>
+              <option value="toSvg">SVG</option>
+              <option value="toJpeg">JPG</option>
             </Select>
           </Export>
 
