@@ -7,6 +7,7 @@ import Nav from '../Nav'
 import router from 'next/router'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
+import Select from '../Select'
 
 const Cont = styled.section`
   display: grid;
@@ -26,9 +27,16 @@ const Main = styled.main`
   }
 `
 
-// const EditorRef = React.forwardRef((props, ref) => (
-//   <EditorCodigo ref={ref} {...props} />
-// ))
+const Export = styled.div` 
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  &>button, &>div {
+    margin-top: 10px;
+    width: 49%;
+  }
+`
 
 export default function Content(props) {
   const [code, handleCode] = useState(`
@@ -49,11 +57,13 @@ export default function Content(props) {
   const [bgColor, handleBgColor] = useState('#6bd1ff')
   const [high, handleHigh] = useState(false)
   const [lang, handleLang] = useState('javascript')
+  const [format, handleFormat] = useState('toPng')
   const changeColor = (e) => { handleBgColor(e.target.value) }
   const changeLang = (e) => { handleLang(e.target.value) }
   const changeCode = (e) => { handleCode(e.target.value) }
   const changeNome = (e) => { handleNome(e.target.value) }
   const changeDescricao = (e) => { handleDescricao(e.target.value) }
+  const changeFormat = (e) => { handleFormat(e.target.value) }
   const ref = useRef(null)
 
   let projeto = {
@@ -76,9 +86,14 @@ export default function Content(props) {
   }
 
   const exportAs = (e) => {
-    domtoimage.toPng(ref.current)
+    const LIBRARY_CONV = {
+      png: 'toPng',
+      svg: 'toSvg',
+      jpg: 'toJpeg'
+    }
+    domtoimage[LIBRARY_CONV[format]](ref.current)
       .then((dataUrl) => {
-        window.saveAs(dataUrl, 'image.png')
+        window.saveAs(dataUrl, 'code')
       })
   }
 
@@ -95,10 +110,22 @@ export default function Content(props) {
           refe={ref}
         />
         <ButtonOut onMouseUp={() => handleHigh(!high)}>
-          Visualizar com o highlight
+          {high
+            ? 'Editar'
+            : 'Visualizar com o highlight'
+          }
         </ButtonOut>
         {high
-          && <ButtonFill onClick={exportAs}>Exportar</ButtonFill>
+          && 
+          <Export>
+            <ButtonFill onClick={exportAs}>Exportar</ButtonFill>
+            <Select value={format} changeValue={changeFormat}>
+              <option value="png">PNG</option>
+              <option value="svg">SVG</option>
+              <option value="jpg">JPG</option>
+            </Select>
+          </Export>
+
         }
       </Main>
       <MenuDireito 
