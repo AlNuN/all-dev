@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { ButtonFill } from "../Buttons"
 import H2 from "../H2"
 import Input from '../Input'
-import setaBaixo from '../../assets/seta-baixo.svg';
+import Select from "../Select";
 
 const Md = styled.aside`
   display: flex;
@@ -28,28 +28,6 @@ const Md = styled.aside`
     height: 70px;
   }
 
-  select{
-    appearance: none; 
-    -webkit-appearance: none;
-    width: 100%;
-  } 
-
-  .select-wrapper {
-    position: relative;
-    margin-top: 16px;
-  }
-
-  .select-wrapper::after {
-    content: url(${setaBaixo});
-    font-size: 1rem;
-    color: ${({ theme }) => theme.colors.white};
-    top: 18px;
-    right: 15px;
-    width: 9px;
-    height: 4.5px;
-    position: absolute;
-  }
-
   #color-picker {
     border: ${({ theme }) => theme.colors.white} 1px solid;
     background: transparent;
@@ -73,10 +51,6 @@ const Md = styled.aside`
     }
     
     #color-picker {
-      width: 49%
-    }
-
-    .select-wrapper {
       width: 49%
     }
   }
@@ -113,14 +87,11 @@ export default function MenuDireito ({
         Personalização
       </H2>
       <div className="personalizacao">
-        <div className="select-wrapper">
-          <Input as="select" name="linguagem" id="linguagem" 
-            value={lang} onChange={changeLang}>
+        <Select value={lang} changeValue={changeLang} >
             <option value="javascript">JavaScript</option>
             <option value="html">Html</option>
             <option value="css">Css</option>
-          </Input>
-        </div>
+        </Select >
 
         <Input type="color" name="color-picker" id="color-picker"
           value={bgColor} onChange={changeColor}/>
