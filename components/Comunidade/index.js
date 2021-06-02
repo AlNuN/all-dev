@@ -6,6 +6,7 @@ import SocialButton from "../SocialButton"
 import Comentario from "../SVG/Comentario"
 import Curtida from "../SVG/Curtida"
 import Usuario from '../Usuario'
+import Link from 'next/link'
 
 const Cont = styled.section`
   display: grid;
@@ -43,6 +44,10 @@ const Li = styled.li`
     font-weight: bold;
     font-size: 21px;
     margin-top: 24px;
+  }
+
+  & a {
+    text-decoration: none;
   }
 
   & article section {
@@ -95,16 +100,20 @@ export default function Comunidade() {
         <ul>
           {codes !== null && codes.map((code) => (
             <Li key={code.id}>
-              <EditorCodigo 
-                code={code.codigo}
-                bgColor={code.cor}
-                hasHighlight={true}
-                lang={code.linguagem}
-              />
+              <Link href={{ pathname: '/', query: { id: code.id } }}>
+                <a>
+                  <EditorCodigo
+                    code={code.codigo}
+                    bgColor={code.cor}
+                    hasHighlight={true}
+                    lang={code.linguagem}
+                  />
+                </a>
+              </Link>
               <article>
                 <h3>{code.nome}</h3>
                 <section>{code.descricao}</section>
-                <div class="social">
+                <div className="social">
                   <div>
                     <SocialButton><Comentario /><span>9</span></SocialButton>
                     <SocialButton><Curtida /><span>105</span></SocialButton>

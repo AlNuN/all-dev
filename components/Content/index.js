@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { ButtonOut, ButtonFill } from "../Buttons"
 import EditorCodigo from "../EditorCodigo"
@@ -58,6 +58,7 @@ export default function Content(props) {
   const [high, handleHigh] = useState(false)
   const [lang, handleLang] = useState('javascript')
   const [format, handleFormat] = useState('toPng')
+  const [id, handleId] = useState(null)
   const changeColor = (e) => { handleBgColor(e.target.value) }
   const changeLang = (e) => { handleLang(e.target.value) }
   const changeCode = (e) => { handleCode(e.target.value) }
@@ -66,21 +67,28 @@ export default function Content(props) {
   const changeFormat = (e) => { handleFormat(e.target.value) }
   const ref = useRef(null)
 
-  let projeto = {
-    nome,
-    descricao,
-    linguagem: lang,
-    cor: bgColor,
-    codigo: code,
-  }
-
   const submit = async (e) => {
     const db = (await import('../../controlers/DB.js')).db
 
-    db.open().then(function(){
-      db.projetos.add(projeto)
-      console.log(db.verno)
-    })
+    let projeto = {
+      nome,
+      descricao,
+      linguagem: lang,
+      cor: bgColor,
+      codigo: code,
+    }
+
+    if (id) {
+      db.open().then(function(){
+        db.projetos.update(id, projeto)
+        console.log(id)
+      })
+    } else {
+      db.open().then(function(){
+        db.projetos.add(projeto)
+        console.log(id)
+      })
+    }
 
     router.push('/comunidade')
   }
@@ -91,6 +99,23 @@ export default function Content(props) {
         saveAs(dataUrl, 'code')
       })
   }
+
+  useEffect(async() => {
+    const idd = parseInt(router.query.id)
+    handleId(idd);
+    if (idd) {
+      const db = (await import('../../controlers/DB.js')).db
+      db.open().then(function(){
+        db.projetos.get(idd).then((p) => {
+          handleNome(p.nome)
+          handleDescricao(p.descricao)
+          handleBgColor(p.cor)
+          handleCode(p.codigo)
+          handleLang(p.linguagem)
+        })
+      })
+    }
+  }, [])
 
   return (
     <Cont>
