@@ -2,9 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import EditorCodigo from "../EditorCodigo"
 import Nav from '../Nav'
-import SocialButton from "../SocialButton"
-import Comentario from "../SVG/Comentario"
-import Curtida from "../SVG/Curtida"
+import { Curtida, Comentario } from '../SocialButton'
 import Usuario from '../Usuario'
 import Link from 'next/link'
 
@@ -115,8 +113,8 @@ export default function Comunidade() {
                 <section>{code.descricao}</section>
                 <div className="social">
                   <div>
-                    <SocialButton><Comentario /><span>9</span></SocialButton>
-                    <SocialButton><Curtida /><span>105</span></SocialButton>
+                    <Comentario ><span>9</span></Comentario>
+                    <Curtida ><span>105</span></Curtida>
                   </div>
                   <Usuario />
                 </div>
