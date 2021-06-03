@@ -66,6 +66,7 @@ export default function Content(props) {
   const changeDescricao = (e) => { handleDescricao(e.target.value) }
   const changeFormat = (e) => { handleFormat(e.target.value) }
   const ref = useRef(null)
+  const extensions = { 'javascript': 'js', 'html': 'html', 'css': 'css' }
 
   const submit = async (e) => {
     const db = (await import('../../controlers/DB.js')).db
@@ -94,10 +95,15 @@ export default function Content(props) {
   }
 
   const exportAs = (e) => {
-    domtoimage[format](ref.current)
-      .then((dataUrl) => {
-        saveAs(dataUrl, 'code')
-      })
+    if (format === 'txt') {
+      let blob = new Blob([code], {type: "text/plain;charset=utf-8"})
+      saveAs(blob, `code.${extensions[lang]}`)
+    } else {
+      domtoimage[format](ref.current)
+        .then((dataUrl) => {
+          saveAs(dataUrl, 'code')
+        })
+    }
   }
 
   useEffect(async() => {
@@ -143,9 +149,9 @@ export default function Content(props) {
               <option value="toPng">PNG</option>
               <option value="toSvg">SVG</option>
               <option value="toJpeg">JPG</option>
+              <option value="txt">{extensions[lang].toUpperCase()}</option>
             </Select>
           </Export>
-
         }
       </Main>
       <MenuDireito 
