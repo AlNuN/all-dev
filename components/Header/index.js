@@ -109,7 +109,12 @@ export default function Header (props) {
           <a><Logo /></a>
         </Link>
       </Wrapper>
-      <Busca srch={hasSrch} placeholder="Busque por algo"/>
+      <Busca srch={hasSrch} 
+        value={props.hValue} 
+        onChange={props.changeHValue}
+        placeholder="Busque por algo"
+        autoFocus
+        />
       <SVGLupa onClick={changeSrch}>
         {hasSrch
           ? <Close />

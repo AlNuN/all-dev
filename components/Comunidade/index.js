@@ -79,17 +79,21 @@ const Li = styled.li`
   }
 `
 
-export default function Comunidade() {
+export default function Comunidade({ search }) {
   const [codes, setCodes] = useState(null)
   
   useEffect(async () => {
     const db = (await import('../../controlers/DB.js')).db
 
     db.open().then(function(){
-      db.table('projetos').toArray().then((projeto) => { setCodes(projeto) })
+      search 
+      ? db.projetos
+        .filter((p) => new RegExp(search, 'i').test(p.nome))
+        .toArray((arr) => setCodes(arr))
+      : db.table('projetos').toArray((projeto) => { setCodes(projeto) })
     })
 
-  }, [])
+  }, [search])
 
   return (
     <Cont>
