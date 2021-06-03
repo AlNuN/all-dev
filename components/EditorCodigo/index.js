@@ -15,7 +15,7 @@ const CodeArea = styled.textarea`
   margin: auto;
   font-size: 14px;
 
-  &:-webkit-scrollbar {
+  &::-webkit-scrollbar {
   display: none;
   }
   -ms-overflow-style: none;  /* IE and Edge */
@@ -53,7 +53,7 @@ const Pre = styled.pre`
   height: 300px;
   overflow: scroll;
 
-  &:-webkit-scrollbar {
+  &::-webkit-scrollbar {
   display: none;
   }
   -ms-overflow-style: none;  /* IE and Edge */

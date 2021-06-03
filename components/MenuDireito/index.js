@@ -31,13 +31,16 @@ const Md = styled.aside`
   #color-picker {
     border: ${({ theme }) => theme.colors.white} 1px solid;
     background: transparent;
-    width: 100%;
     padding: 8px;
   }
 
-  #color-picker::-webkit-color-swatch, #color-picker::-moz-color-swatch {
+  #color-picker::-moz-color-swatch {
     border-radius: 5px;
   } 
+
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 5px;
+  }
 
   button {
     margin-top: 40px;

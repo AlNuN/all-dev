@@ -4,9 +4,9 @@ import { Button } from '../Buttons';
 const Input = styled(Button).attrs(props => ({ 
   as: props.as || 'input'
   }))`
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.insideInput};
   color: ${({ theme }) => theme.colors.placeholder};
-  width: calc(100% - 10px);
   &:hover{
   background: ${({ theme }) => theme.colors.insideInputHover};
   }
