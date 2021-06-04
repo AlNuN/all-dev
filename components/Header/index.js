@@ -6,9 +6,10 @@ import SVGButton from '../SVGButton'
 import Input from '../Input'
 import Usuario from '../Usuario'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MenuItens from '../MenuItens'
 import Close from '../SVG/Close'
+import router from 'next/router'
 
 
 const SHeader = styled.header`
@@ -101,6 +102,10 @@ export default function Header (props) {
   const changeSrch = (e) => {
     handleSrch(!hasSrch)
   } 
+
+  useEffect(() => {
+    router.query.nome && handleSrch(true)
+  }, [])
 
   return (
     <SHeader srch={hasSrch}>
